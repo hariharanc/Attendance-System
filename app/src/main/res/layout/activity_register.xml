@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1E88E5">
+
+    <include
+        android:id="@+id/inc_header"
+        layout="@layout/header_view" />
+
+    <RelativeLayout
+        android:id="@+id/rr_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/inc_header">
+
+        <RelativeLayout
+            android:id="@+id/rr_mobNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_mob_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Mobile Number"
+
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/edt_mob_no"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/txt_mob_no"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                android:maxLength="10"
+                android:digits="1234567890"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:background="@android:color/white"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rr_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rr_mobNo"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Name"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/edt_name"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:singleLine="true"
+                android:layout_below="@+id/txt_name"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:imeOptions="actionNext"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rr_dept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rr_name"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/txt_dept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Department"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/edt_dept"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/txt_dept"
+                android:layout_marginLeft="20dp"
+                android:singleLine="true"
+                android:layout_marginRight="50dp"
+                android:imeOptions="actionNext"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rr_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rr_dept"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/txt_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Enter PIN"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/edt_new_pin"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/txt_password"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                android:imeOptions="actionNext"
+                android:maxLength="4"
+                android:digits="01234567890"
+                android:inputType="numberPassword"
+                android:password="true"
+                android:background="@android:color/white"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rr_conform_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rr_password"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/txt_conform_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Conform PIN"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/edt_conform_pin"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/txt_conform_password"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:maxLength="4"
+                android:digits="01234567890"
+                android:inputType="numberPassword"
+                android:imeOptions="actionDone"
+                android:password="true"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rr_body"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="REGISTER"
+        android:textColor="@android:color/white" />
+
+
+</RelativeLayout>

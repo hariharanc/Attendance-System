@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eattendance.pg"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="16" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".SplashScreeActivity"
+            android:label="@string/app_name"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.eattendance.admin.AdminPasswordActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.eattendance.admin.AdminScreenActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.eattendance.admin.ChangeAdminPinActivty"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.eattendance.admin.StudentRegistrationActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".HomeScreenActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".AttendanceActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".RegistrationActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.eattendance.absentstudent.AbsentStudentActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".StaffHomeScreenActivity"
+            android:screenOrientation="portrait"></activity>
+    </application>
+
+</manifest>

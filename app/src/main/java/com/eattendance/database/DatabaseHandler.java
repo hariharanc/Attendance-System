@@ -314,6 +314,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    /***
+     * Delete specific absent student
+     **/
+
+    public String deleteAbsentStud(String name, String dep, String year) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            return String.valueOf(db.delete(TABLE_NAME_ABSENT_STUDENT, STUDENT_NAME + "=?" + " AND " + STUDENT_DEPART + "=?" + " AND " + STUDENT_YEAR + "=?",
+                    new String[]{name, dep, year}));
+        } catch (Exception e) {
+            Log.e(DatabaseHandler.class.toString(),
+                    "DatabaseHandler Delete Exception" + e.getMessage());
+            return "error";
+        }
+    }
+
+
 //    public String upDateMobNo(String empId, String empMobNo) {
 //        String response = null;
 //        try {
@@ -334,7 +351,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //
 //    }
 
-//    public String deleteAllEmployee() {
+    //    public String deleteAllEmployee() {
 //
 //        try {
 //            SQLiteDatabase db = this.getWritableDatabase();
@@ -346,7 +363,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //            return "error";
 //        }
 //    }
-
     public String deleteSpecificEmpId(String mobNo) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();

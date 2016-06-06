@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.eattendance.pg.SplashScreeActivity" >
+    tools:context="com.eattendance.main.SplashScreeActivity" >
 
     <item
         android:id="@+id/action_settings"
@@ -10,4 +10,4 @@
         app:showAsAction="never"/>
 
 </menu>
-<!-- From: file:/home/hari/Desktop/EAttendance/app/src/main/res/menu/splash_scree.xml -->
+<!-- From: file:/D:/MyGitProject/Attendance/app/src/main/res/menu/splash_scree.xml -->

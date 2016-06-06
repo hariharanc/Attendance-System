@@ -1,22 +1,23 @@
 package com.eattendance.absentstudent;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eattendance.adapter.AttendanceAdapter;
 import com.eattendance.database.DatabaseHandler;
-import com.eattendance.pg.HomeScreenActivity;
-import com.eattendance.pg.R;
+import com.eattendance.main.HomeScreenActivity;
+import com.eattendance.main.MainActivity;
+import com.eattendance.main.R;
+import com.eattendance.staff.StaffHomeScreenActivity;
 import com.eattendance.util.AbsentStudentDetails;
 import com.eattendance.util.StudentRegisterDetails;
 
@@ -26,23 +27,15 @@ import java.util.List;
 /**
  * Created by root on 4/6/16.
  */
-public class AbsentStudentActivity extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class AbsentStudentActivity extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener, AdapterView.OnItemLongClickListener {
 
     private TextView mTxtDept, mTxtDate, mTxtBack;
-   // private Button mBntSubmit;
+    // private Button mBntSubmit;
     private String depart, year, date;
     ArrayList<Integer> checkedPositions = new ArrayList<Integer>();
     private DatabaseHandler mDatabaseHandler;
-
-    //  private ArrayList<StudentRegisterDetails> mStudentRegisterDetailses;
+    int selectedPos;
     private ArrayList<AbsentStudentDetails> mAbsentStudentList;
-
-    //    public static final String[] sno = new String[]{"1",
-//            "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-//
-//    public static final String[] name = new String[]{"Aravind",
-//            "Bala", "Chandru", "Devan", "Elango", "Fransis", "Gopal", "hari", "sabari", "subash"};
-    private List<StudentRegisterDetails> rowItems;
     private ListView mLstAttendance;
 
     @Override
@@ -57,8 +50,6 @@ public class AbsentStudentActivity extends Activity implements AdapterView.OnIte
         mTxtBack = (TextView) findViewById(R.id.txt_back);
         mTxtDept = (TextView) findViewById(R.id.txt_dept);
         mTxtDate = (TextView) findViewById(R.id.txt_date);
-       // mBntSubmit = (Button) findViewById(R.id.bnt_submit);
-       // mBntSubmit.setOnClickListener(this);
         mDatabaseHandler = new DatabaseHandler(this);
 
 
@@ -95,6 +86,7 @@ public class AbsentStudentActivity extends Activity implements AdapterView.OnIte
         AbsentAdapter mAttendanceAdapter = new AbsentAdapter(this, mAbsentStudentList);
         mLstAttendance.setAdapter(mAttendanceAdapter);
         mLstAttendance.setOnItemClickListener(this);
+        mLstAttendance.setOnItemLongClickListener(this);
         mTxtBack.setOnClickListener(this);
 
 
@@ -104,12 +96,13 @@ public class AbsentStudentActivity extends Activity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
 
-
-        Toast toast = Toast.makeText(getApplicationContext(),
-                "Item " + (position + 1) + ": " + rowItems.get(position),
-                Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-        toast.show();
+        String name = mAbsentStudentList.get(position).getName();
+        selectedPos = position;
+//        Toast toast = Toast.makeText(getApplicationContext(),
+//                "Item " + (position + 1) + ": " + rowItems.get(position),
+//                Toast.LENGTH_SHORT);
+//        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+//        toast.show();
     }
 
     @Override
@@ -117,16 +110,46 @@ public class AbsentStudentActivity extends Activity implements AdapterView.OnIte
         switch (view.getId()) {
 
             case R.id.txt_back:
-
-                Intent intentHome = new Intent(AbsentStudentActivity.this, HomeScreenActivity.class);
-                startActivity(intentHome);
-                finish();
-
+                moveToMain();
                 break;
-
 
             default:
                 break;
         }
+    }
+
+    private void moveToMain() {
+        Intent intentHome = new Intent(AbsentStudentActivity.this, StaffHomeScreenActivity.class);
+        startActivity(intentHome);
+        finish();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        final CharSequence[] items = {"Delete"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Remove Absent Student");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+
+                mDatabaseHandler.deleteAbsentStud(mAbsentStudentList.get(selectedPos).getName(), depart, year);
+                mAbsentStudentList = mDatabaseHandler.getAbsentStudentDetails(depart, year, date);
+                mLstAttendance = (ListView) findViewById(R.id.lst_attendance);
+                mAbsentStudentList.clear();
+                mAbsentStudentList= mDatabaseHandler.getAbsentStudentDetails(depart, year, date);
+                AbsentAdapter mAttendanceAdapter = new AbsentAdapter(getApplicationContext(), mAbsentStudentList);
+                mLstAttendance.setAdapter(mAttendanceAdapter);
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+        return false;
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveToMain();
     }
 }

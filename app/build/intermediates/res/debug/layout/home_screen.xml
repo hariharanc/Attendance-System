@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:text="Hi Hari"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -143,4 +142,4 @@
     </RelativeLayout>
 
 
-</RelativeLayout><!-- From: file:/home/hari/Desktop/EAttendance/app/src/main/res/layout/home_screen.xml -->
+</RelativeLayout><!-- From: file:/D:/MyGitProject/Attendance/app/src/main/res/layout/home_screen.xml -->

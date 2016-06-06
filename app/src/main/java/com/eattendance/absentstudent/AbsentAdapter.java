@@ -9,9 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.eattendance.pg.R;
+import com.eattendance.main.R;
 import com.eattendance.util.AbsentStudentDetails;
-import com.eattendance.util.StudentRegisterDetails;
 
 import java.util.List;
 

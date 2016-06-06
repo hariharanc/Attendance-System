@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eattendance.database.DatabaseHandler;
-import com.eattendance.pg.R;
+import com.eattendance.main.R;
 import com.eattendance.util.StudentRegisterDetails;
 
 import java.util.ArrayList;
@@ -24,9 +24,10 @@ import java.util.List;
 public class StudentRegistrationActivity extends Activity implements View.OnClickListener {
 
 
-    private EditText mEdtName, mEdtDept, mEdtYrs;
+    private EditText mEdtName;
+    private TextView mEdtDept;
     private Button mBtnSubmit;
-    private TextView mTxtBack;
+    private TextView mTxtBack,mEdtYrs;
 
 
     @Override
@@ -39,8 +40,8 @@ public class StudentRegistrationActivity extends Activity implements View.OnClic
 
     private void initViews() {
         mEdtName = (EditText) findViewById(R.id.edt_name);
-        mEdtDept = (EditText) findViewById(R.id.edt_dept);
-        mEdtYrs = (EditText) findViewById(R.id.edt_year);
+        mEdtDept = (TextView) findViewById(R.id.edt_dept);
+        mEdtYrs = (TextView) findViewById(R.id.edt_year);
         mBtnSubmit = (Button) findViewById(R.id.btn_register);
         mTxtBack = (TextView) findViewById(R.id.txt_back);
         mTxtBack.setOnClickListener(this);
@@ -74,15 +75,14 @@ public class StudentRegistrationActivity extends Activity implements View.OnClic
                     mDatabaseHandler.inserStudent(mStudentRegisterDetails);
                     Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
                     mEdtName.getText().clear();
-                    mEdtDept.getText().clear();
-                    mEdtYrs.getText().clear();
+                    mEdtDept.setText("");
+                    mEdtYrs.setText("");
                 }
 
                 break;
 
             case R.id.txt_back:
-                Intent intentBack = new Intent(StudentRegistrationActivity.this, AdminScreenActivity.class);
-                startActivity(intentBack);
+                screenBack();
                 break;
 
 
@@ -114,6 +114,12 @@ public class StudentRegistrationActivity extends Activity implements View.OnClic
             default:
                 break;
         }
+    }
+
+    private void screenBack() {
+        Intent intentBack = new Intent(StudentRegistrationActivity.this, AdminScreenActivity.class);
+        startActivity(intentBack);
+        finish();
     }
 
     private void getDepartment() {
@@ -166,5 +172,11 @@ public class StudentRegistrationActivity extends Activity implements View.OnClic
         alertDialogObject.show();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        screenBack();
     }
 }

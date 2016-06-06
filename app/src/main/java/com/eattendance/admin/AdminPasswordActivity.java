@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eattendance.pg.MainActivity;
-import com.eattendance.pg.R;
+import com.eattendance.main.MainActivity;
+import com.eattendance.main.R;
 
 /**
  * Created by root on 4/6/16.

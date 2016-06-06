@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.eattendance.pg.MainActivity;
-import com.eattendance.pg.R;
-import com.eattendance.pg.RegistrationActivity;
+import com.eattendance.main.MainActivity;
+import com.eattendance.main.R;
+import com.eattendance.register.RegistrationActivity;
+
 
 /**
  * Created by root on 4/6/16.

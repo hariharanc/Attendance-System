@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#1E88E5">
+    android:background="#1E88E5"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/inc_header"
@@ -20,11 +20,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textSize="20sp"
             android:layout_marginTop="22dp"
+            android:text="Studet Registration"
             android:textColor="@android:color/black"
-            android:text="Studet Registration"/>
-
+            android:textSize="20sp" />
 
 
         <RelativeLayout
@@ -51,8 +50,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="5dp"
-                android:imeOptions="actionNext"
                 android:background="@android:color/white"
+                android:imeOptions="actionNext"
                 android:textColor="@android:color/black" />
 
         </RelativeLayout>
@@ -73,18 +72,21 @@
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edt_dept"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_below="@+id/txt_dept"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="50dp"
-                android:singleLine="true"
-                android:imeOptions="actionNext"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/white"
-                android:textColor="@android:color/black" />
+                android:gravity="center_vertical"
+                android:imeOptions="actionNext"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
@@ -105,21 +107,23 @@
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/edt_year"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_below="@+id/txt_year"
                 android:layout_marginLeft="20dp"
-                android:singleLine="true"
-                android:imeOptions="actionDone"
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/white"
-                android:textColor="@android:color/black" />
+                android:gravity="center_vertical"
+                android:imeOptions="actionDone"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
 
         </RelativeLayout>
-
 
 
     </RelativeLayout>

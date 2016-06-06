@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.eattendance.pg.SplashScreeActivity"
+            android:name="com.eattendance.main.SplashScreeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.eattendance.pg.MainActivity"
+            android:name="com.eattendance.main.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.eattendance.admin.AdminPasswordActivity"
@@ -38,22 +38,25 @@
             android:name="com.eattendance.admin.StudentRegistrationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eattendance.pg.LoginActivity"
+            android:name="com.eattendance.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eattendance.pg.HomeScreenActivity"
+            android:name="com.eattendance.main.HomeScreenActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eattendance.pg.AttendanceActivity"
+            android:name="com.eattendance.attendance.AttendanceActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eattendance.pg.RegistrationActivity"
+            android:name="com.eattendance.register.RegistrationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.eattendance.absentstudent.AbsentStudentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.eattendance.pg.StaffHomeScreenActivity"
+            android:name="com.eattendance.staff.StaffHomeScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.eattendance.attendance.AttendanceReportActivity"
             android:screenOrientation="portrait" />
     </application>
 

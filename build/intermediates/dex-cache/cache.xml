@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/home/hari/androidAdtBundle/IDE/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jar="C:\Users\hariharan\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/home/hari/Desktop/EAttendance/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1-69a02bce2504c4160a9ebd69abf9873aa8642ad0.jar" />
+        <dex dex="D:\MyGitProject\Attendance\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1-6c18c65b72c8c068baa5c31a6fc4dc46f110ec4b.jar" />
     </item>
     <item
-        jar="/home/hari/Desktop/EAttendance/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jar="D:\MyGitProject\Attendance\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/home/hari/Desktop/EAttendance/app/build/intermediates/pre-dexed/debug/classes-b218aa83b00aee0989da0af9eb773d4fecec71b7.jar" />
+        <dex dex="D:\MyGitProject\Attendance\app\build\intermediates\pre-dexed\debug\classes-f5505e315458bd28dd785a6621084965981ecebd.jar" />
     </item>
     <item
-        jar="/home/hari/Desktop/EAttendance/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jar="D:\MyGitProject\Attendance\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="/home/hari/Desktop/EAttendance/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1-9261394ce91b53877666fa4212996cf2b796caa9.jar" />
+        <dex dex="D:\MyGitProject\Attendance\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1-05ed1674636d608241e6885e303a3e2e9c1a61fc.jar" />
     </item>
     <item
-        jar="/home/hari/Desktop/EAttendance/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jar="D:\MyGitProject\Attendance\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="/home/hari/Desktop/EAttendance/app/build/intermediates/pre-dexed/debug/classes-46132019a186e00eadbfa72f3b04f5bd4c4c2030.jar" />
+        <dex dex="D:\MyGitProject\Attendance\app\build\intermediates\pre-dexed\debug\classes-48a1f54c838e978d7a9f09693db7832f5eba4f6b.jar" />
     </item>
 
 </items>

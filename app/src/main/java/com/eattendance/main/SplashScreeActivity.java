@@ -21,9 +21,10 @@ public class SplashScreeActivity extends Activity {
     private void initViews() {
         mSharedPreferences = getSharedPreferences("e-attendance", MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
-        mEditor.putString("admin_pin", "1234");
-        mEditor.commit();
-
+        if(mSharedPreferences.getString("admin_pin", "1234").equalsIgnoreCase("1234")){
+            mEditor.putString("admin_pin", "1234");
+            mEditor.commit();
+        }
         /****** Create Thread that will sleep for 5 seconds *************/
         Thread background = new Thread() {
             public void run() {

@@ -70,7 +70,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(getApplicationContext(), "Please Enter The Valid PIN!!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    mStaffRegisterDetailses=mDatabaseHandler.getStaffDetails(mEdtMobNo.getText().toString(),mEdtPassword.getText().toString());
+                    mStaffRegisterDetailses=mDatabaseHandler.getStaffDetails(mEdtMobNo.getText().toString());
 
 
                     if(mStaffRegisterDetailses!=null&&mStaffRegisterDetailses.size()>0){

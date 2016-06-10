@@ -50,11 +50,17 @@ public class AttendanceReportActivity extends Activity implements View.OnClickLi
             mTxtDate.setText("Date: " + date);
         }
 
+
+        if (getIntent().getStringExtra("depart") != null) {
+            depart = getIntent().getStringExtra("depart");
+            mTxtDepart.setText("DEPARTMENT:: " + depart);
+        }
+
         if (getIntent().getStringExtra("totalCount") != null) {
             mTxtTotalStudent.setText("TOTAL STUDENT:: " + getIntent().getStringExtra("totalCount"));
         }
 
-        mTxtDepart.setText("DEPARTMENT:: " + date);
+
         mTxtAbsent.setText("ABSENT STUDENT:: " + absentStudent);
         mTxtPresent.setText("PRESENT STUDENT:: " + presentStudent);
         mTxtPercentage.setText("ATTENDTANCE PERCENTAGE:: " + percentage);

@@ -10,10 +10,11 @@
 
 
     <RelativeLayout
-        android:id="@+id/body"
+        android:id="@+id/rl_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/inc_header">
+        android:layout_below="@+id/inc_header"
+        android:layout_marginTop="10dp">
 
 
         <Button
@@ -22,17 +23,62 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="Absent" />
+            android:background="#1976D2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Absent"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_attendance"
+            android:id="@+id/btn_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_absent"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="Attendance" />
+            android:background="#1976D2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Upload"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/btn_send_sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_upload"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="#1976D2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Send SMS"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_send_sms"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="#1976D2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Attendance"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

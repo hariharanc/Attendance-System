@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class AbsentStudentActivity extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener, AdapterView.OnItemLongClickListener {
 
-    private TextView mTxtDept, mTxtDate, mTxtBack;
+    private TextView mTxtDept, mTxtDate, mTxtBack,mTxtTitle;
     // private Button mBntSubmit;
     private String depart, year, date;
     ArrayList<Integer> checkedPositions = new ArrayList<Integer>();
@@ -47,6 +47,8 @@ public class AbsentStudentActivity extends Activity implements AdapterView.OnIte
     }
 
     private void initView() {
+        mTxtTitle=(TextView)findViewById(R.id.txt_title);
+        mTxtTitle.setText("Absent Students");
         mTxtBack = (TextView) findViewById(R.id.txt_back);
         mTxtDept = (TextView) findViewById(R.id.txt_dept);
         mTxtDate = (TextView) findViewById(R.id.txt_date);
@@ -149,7 +151,8 @@ public class AbsentStudentActivity extends Activity implements AdapterView.OnIte
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         moveToMain();
+        super.onBackPressed();
+
     }
 }

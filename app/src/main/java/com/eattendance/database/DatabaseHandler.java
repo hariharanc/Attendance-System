@@ -33,6 +33,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String STUDENT_NAME = "studentName";
     public static final String STUDENT_DEPART = "studentDepart";
     public static final String STUDENT_YEAR = "studentYear";
+    public static final String STUDENT_PARENT_MOB_NO = "studentMobNo";
 
 
     /**
@@ -64,13 +65,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_STUDENT_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_STUDENT + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
                 + STUDENT_NAME + " TEXT," + STUDENT_DEPART + " TEXT,"
-                + STUDENT_YEAR + " TEXT"
+                + STUDENT_YEAR + " TEXT," + STUDENT_PARENT_MOB_NO + " TEXT"
                 + ")";
 
         String CREATE_ABSENT_STUDENT_TABLE = "CREATE TABLE IF NOT EXISTS "
                 + TABLE_NAME_ABSENT_STUDENT + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
                 + STUDENT_NAME + " TEXT," + STUDENT_DEPART + " TEXT," + DATE + " TEXT,"
-                + STUDENT_YEAR + " TEXT"
+                + STUDENT_YEAR + " TEXT," + STUDENT_PARENT_MOB_NO + " TEXT"
                 + ")";
 
 
@@ -125,13 +126,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<StaffRegisterDetails> getStaffDetails(String mobNo, String pin) {
+    public ArrayList<StaffRegisterDetails> getStaffDetails(String mobNo) {
         try {
             ArrayList<StaffRegisterDetails> list = new ArrayList<StaffRegisterDetails>();
             StaffRegisterDetails staffRegisterDetails = new StaffRegisterDetails();
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_STAFF
-                    + " WHERE " + STAFF_MOB_NO + "= ?" + " AND " + STAFF_PIN + "=?", new String[]{mobNo, pin});
+                    + " WHERE " + STAFF_MOB_NO + "= ?", new String[]{mobNo});
 
             if (c.moveToFirst()) {
                 do {
@@ -150,6 +151,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             c.close();
             db.close();
             return list;
+        } catch (Exception e) {
+            Log.e(DatabaseHandler.class.toString(),
+                    "DatabaseHandler selecedtEmpData Exp is" + e.getMessage());
+        }
+        return null;
+
+    }
+
+
+    public String cehckStaffAlredyExist(String mobNo) {
+        try {
+            String mobileNo = "";
+            ArrayList<StaffRegisterDetails> list = new ArrayList<StaffRegisterDetails>();
+            StaffRegisterDetails staffRegisterDetails = new StaffRegisterDetails();
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_STAFF
+                    + " WHERE " + STAFF_MOB_NO + "= ?", new String[]{mobNo});
+
+            if (c.moveToFirst()) {
+                do {
+                    mobileNo = c.getString(c
+                            .getColumnIndex(STAFF_MOB_NO));
+                    // Do something Here with values
+                } while (c.moveToNext());
+            }
+            c.close();
+            db.close();
+            return mobileNo;
         } catch (Exception e) {
             Log.e(DatabaseHandler.class.toString(),
                     "DatabaseHandler selecedtEmpData Exp is" + e.getMessage());
@@ -178,6 +207,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             insertStudent.put(STUDENT_NAME, studentRegisterDetails.getName());
             insertStudent.put(STUDENT_DEPART, studentRegisterDetails.getDepart());
             insertStudent.put(STUDENT_YEAR, studentRegisterDetails.getYear());
+            insertStudent.put(STUDENT_PARENT_MOB_NO, studentRegisterDetails.getMobNo());
 
             response = String.valueOf(db.insert(TABLE_NAME_STUDENT, null,
                     insertStudent));
@@ -199,12 +229,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public ArrayList<StudentRegisterDetails> getStudentDetails(String depart, String year) {
         try {
-
-
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_STUDENT
-                    + " WHERE " + STUDENT_DEPART + "= ?" + " AND " + STUDENT_YEAR + "=?", new String[]{depart, year});
-
+                    + " WHERE " + STUDENT_DEPART + "= ?" + " AND " + STUDENT_YEAR + "=?" + " ORDER BY " + STUDENT_NAME + " ASC", new String[]{depart, year});
             if (c.moveToFirst()) {
                 do {
                     StudentRegisterDetails studentRegisterDetails = new StudentRegisterDetails();
@@ -213,6 +240,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             .getColumnIndex(STUDENT_NAME)));
                     studentRegisterDetails.setName(c.getString(c
                             .getColumnIndex(STUDENT_NAME)));
+                    studentRegisterDetails.setMobNo(c.getString(c
+                            .getColumnIndex(STUDENT_PARENT_MOB_NO)));
                     studentList.add(studentRegisterDetails);
                     // Do something Here with values
                 } while (c.moveToNext());
@@ -234,12 +263,48 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
+    public String checkStudentExist(String name, String depart, String year) {
+        String studentName = "";
+        try {
+
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_STUDENT
+                    + " WHERE " + STUDENT_NAME + "= ?" + " AND " + STUDENT_DEPART + "= ?" + " AND " + STUDENT_YEAR + "=?", new String[]{name, depart, year});
+
+            if (c.moveToFirst()) {
+                do {
+                    StudentRegisterDetails studentRegisterDetails = new StudentRegisterDetails();
+
+                    Log.i("DatabaseHandler", "DatabaseHandler Student name::" + c.getString(c
+                            .getColumnIndex(STUDENT_NAME)));
+                    studentName = c.getString(c
+                            .getColumnIndex(STUDENT_NAME));
+                } while (c.moveToNext());
+            }
+
+            if (c != null && !c.isClosed()) {
+                c.close();
+                db.close();
+            }
+
+
+            return studentName;
+        } catch (Exception e) {
+            Log.e(DatabaseHandler.class.toString(),
+                    "DatabaseHandler selecedtEmpData Exp is" + e.getMessage());
+        }
+        return null;
+
+    }
+
+
     /**
      * ABSENT STUDENT DETAILS TABLE**
      */
 
 
-    public String inserAbsentStudent(String name, String dept, String yrs, String date) {
+    public String insertAbsentStudent(String name, String dept, String yrs, String date, String mobNo) {
         String response = null;
         try {
             Log.i(DatabaseHandler.class.toString(),
@@ -257,6 +322,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             insertStudent.put(STUDENT_DEPART, dept);
             insertStudent.put(STUDENT_YEAR, yrs);
             insertStudent.put(DATE, date);
+            insertStudent.put(STUDENT_PARENT_MOB_NO, mobNo);
             response = String.valueOf(db.insert(TABLE_NAME_ABSENT_STUDENT, null,
                     insertStudent));
 
@@ -278,8 +344,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     public ArrayList<AbsentStudentDetails> getAbsentStudentDetails(String depart, String year, String date) {
         try {
-
-
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME_ABSENT_STUDENT
                     + " WHERE " + STUDENT_DEPART + "= ?" + " AND " + DATE + "= ?" + " AND " + STUDENT_YEAR + "=?", new String[]{depart, date, year});
@@ -292,7 +356,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             .getColumnIndex(STUDENT_NAME)));
                     absentStudentDetails.setName(c.getString(c
                             .getColumnIndex(STUDENT_NAME)));
-
+                    absentStudentDetails.setMobNo(c.getString(c
+                            .getColumnIndex(STUDENT_PARENT_MOB_NO)));
+                    absentStudentDetails.setDate(c.getString(c
+                            .getColumnIndex(DATE)));
                     absentStudentList.add(absentStudentDetails);
                     // Do something Here with values
                 } while (c.moveToNext());
@@ -302,8 +369,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 c.close();
                 db.close();
             }
-
-
             return absentStudentList;
         } catch (Exception e) {
             Log.e(DatabaseHandler.class.toString(),

@@ -4,20 +4,18 @@ package com.eattendance.util;
  * Created by root on 5/6/16.
  */
 public class AbsentStudentDetails {
+    String name;
+    String dept;
+    String year;
+    String date;
+    String mobNo;
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDept() {
-        return dept;
-    }
-
-    public void setDept(String dept) {
-        this.dept = dept;
     }
 
     public String getYear() {
@@ -28,6 +26,14 @@ public class AbsentStudentDetails {
         this.year = year;
     }
 
+    public String getDept() {
+        return dept;
+    }
+
+    public void setDept(String dept) {
+        this.dept = dept;
+    }
+
     public String getDate() {
         return date;
     }
@@ -36,14 +42,23 @@ public class AbsentStudentDetails {
         this.date = date;
     }
 
-    String name,dept,year,date;
-
-    public AbsentStudentDetails(String name, String year, String dept, String date) {
-        this.name = name;
-        this.year = year;
-        this.dept = dept;
-        this.date = date;
+    public String getMobNo() {
+        return mobNo;
     }
+
+    public void setMobNo(String mobNo) {
+        this.mobNo = mobNo;
+    }
+
+    public AbsentStudentDetails(String name, String dept, String year, String date, String mobNo) {
+        this.name = name;
+        this.dept = dept;
+        this.year = year;
+        this.date = date;
+        this.mobNo = mobNo;
+    }
+
+
 
     public AbsentStudentDetails(){}
 }

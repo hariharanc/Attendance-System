@@ -30,7 +30,7 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
     private EditText mEdtMobNo, mEdtName, mEdtPswd, mEdtConfirmPswd;
     private TextView mEdtDept;
     private DatabaseHandler mDatabaseHandler;
-
+    private ArrayList<StaffRegisterDetails> staffRegisterDetailses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
         mTxtBack = (TextView) findViewById(R.id.txt_back);
         mTxtBack.setOnClickListener(this);
         mBtnRegister.setOnClickListener(this);
-       // mEdtDept.setEnabled(false);
+        // mEdtDept.setEnabled(false);
         mEdtDept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +80,8 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
                 } else if (mEdtMobNo != null && mEdtMobNo.getText().length() < 10) {
                     Toast.makeText(getApplicationContext(), "Please Entet Valid Mobile No!!", Toast.LENGTH_SHORT).show();
                     return;
-                } else if ((mEdtName != null && mEdtName.getText().length() == 0) ||
+                }
+                else if ((mEdtName != null && mEdtName.getText().length() == 0) ||
                         (mEdtName != null && mEdtName.getText().toString().equalsIgnoreCase(" "))) {
 
                     Toast.makeText(getApplicationContext(), "Please Entet Your Name!!", Toast.LENGTH_SHORT).show();
@@ -107,15 +108,24 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
                     Toast.makeText(getApplicationContext(), "New PIN and Confirm PIN should be same!!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    StaffRegisterDetails staffRegisterDetails = new StaffRegisterDetails();
-                    staffRegisterDetails.setMobNo(mEdtMobNo.getText().toString());
-                    staffRegisterDetails.setStaffName(mEdtName.getText().toString());
-                    staffRegisterDetails.setDepartment(mEdtDept.getText().toString());
-                    staffRegisterDetails.setPin(mEdtPswd.getText().toString());
-                    mDatabaseHandler.inserEmployeeData(staffRegisterDetails);
-                    Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
-                    startActivity(i);
-                    finish();
+                    String mobNo = mDatabaseHandler.cehckStaffAlredyExist(mEdtMobNo.getText().toString());
+                    if (mobNo.equalsIgnoreCase(mEdtMobNo.getText().toString())) {
+                        Toast.makeText(getApplicationContext(), "This Mobile Number Is Already Registered!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        StaffRegisterDetails staffRegisterDetails = new StaffRegisterDetails();
+                        staffRegisterDetails.setMobNo(mEdtMobNo.getText().toString());
+                        staffRegisterDetails.setStaffName(mEdtName.getText().toString());
+                        staffRegisterDetails.setDepartment(mEdtDept.getText().toString());
+                        staffRegisterDetails.setPin(mEdtPswd.getText().toString());
+                        mDatabaseHandler.inserEmployeeData(staffRegisterDetails);
+                        Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
+                        mEdtName.getText().clear();
+                        mEdtMobNo.getText().clear();
+                        mEdtConfirmPswd.getText().clear();
+                        mEdtPswd.getText().clear();
+                        mEdtDept.setText("");
+                    }
+
                 }
                 break;
 
@@ -142,8 +152,7 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
         adminScreen();
     }
 
-    public void ShowAlertDialogWithListview()
-    {
+    public void ShowAlertDialogWithListview() {
         List<String> mAnimals = new ArrayList<String>();
         mAnimals.add("ME");
         mAnimals.add("MCA");

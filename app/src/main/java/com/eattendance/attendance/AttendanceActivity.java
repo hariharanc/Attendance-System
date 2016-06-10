@@ -127,9 +127,7 @@ public class AttendanceActivity extends Activity implements AdapterView.OnItemCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.txt_back:
-                Intent intentHome = new Intent(AttendanceActivity.this, HomeScreenActivity.class);
-                startActivity(intentHome);
-                finish();
+                goToMainScreen();
 
                 break;
 
@@ -139,8 +137,8 @@ public class AttendanceActivity extends Activity implements AdapterView.OnItemCl
                     int pos = Integer.valueOf(checkedPositions.get(i));
                     // Log.i("AttendanceActivity","AttendanceActivity Name is::"+ checkedPositions.get(pos));
                     Log.i("AttendanceActivity", "AttendanceActivity Name is::" + mStudentRegisterDetailses.get(pos).getName());
-                    mDatabaseHandler.inserAbsentStudent(mStudentRegisterDetailses.get(pos).getName(), depart,
-                            year, date);
+                    mDatabaseHandler.insertAbsentStudent(mStudentRegisterDetailses.get(pos).getName(), depart,
+                            year, date,mStudentRegisterDetailses.get(i).getMobNo());
                     Log.i("AttendanceActivity", "AttendanceActivity Total count::" +mStudentRegisterDetailses.size());
                     Log.i("AttendanceActivity", "AttendanceActivity Present count::" +(mStudentRegisterDetailses.size() - checkedPositions.size()));
                     Log.i("AttendanceActivity", "AttendanceActivity Absent count::" +checkedPositions.size());
@@ -179,8 +177,9 @@ public class AttendanceActivity extends Activity implements AdapterView.OnItemCl
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         goToMainScreen();
+        super.onBackPressed();
+
 
     }
 }

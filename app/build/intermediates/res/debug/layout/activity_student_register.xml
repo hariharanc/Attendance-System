@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="20dp"
             android:text="Studet Registration"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_register"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:id="@+id/txt_name"
@@ -46,6 +46,10 @@
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:lines="1"
+                android:singleLine ="true"
+                android:maxLines="1"
+                android:inputType="textCapCharacters"
                 android:layout_below="@+id/txt_name"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="50dp"
@@ -122,6 +126,43 @@
                 android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rr_mobNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rr_year"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/txt_mob_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="Parent Mobile No:"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/edt_parent_mob_no"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/txt_mob_no"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:maxLength="10"
+                android:digits="1234567890"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:background="@android:color/white"
+                android:textColor="@android:color/black" />
 
         </RelativeLayout>
 

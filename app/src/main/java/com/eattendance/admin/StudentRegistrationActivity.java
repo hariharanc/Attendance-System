@@ -24,10 +24,10 @@ import java.util.List;
 public class StudentRegistrationActivity extends Activity implements View.OnClickListener {
 
 
-    private EditText mEdtName;
+    private EditText mEdtName, mEdtParentMobNo;
     private TextView mEdtDept;
     private Button mBtnSubmit;
-    private TextView mTxtBack,mEdtYrs;
+    private TextView mTxtBack, mEdtYrs;
 
 
     @Override
@@ -39,6 +39,7 @@ public class StudentRegistrationActivity extends Activity implements View.OnClic
     }
 
     private void initViews() {
+        mEdtParentMobNo = (EditText) findViewById(R.id.edt_parent_mob_no);
         mEdtName = (EditText) findViewById(R.id.edt_name);
         mEdtDept = (TextView) findViewById(R.id.edt_dept);
         mEdtYrs = (TextView) findViewById(R.id.edt_year);
@@ -69,14 +70,31 @@ public class StudentRegistrationActivity extends Activity implements View.OnClic
                         mEdtYrs.getText().toString().trim().equalsIgnoreCase(" ")) {
                     Toast.makeText(getApplicationContext(), "Please Choose Years!!", Toast.LENGTH_SHORT).show();
 
+                } else if (mEdtParentMobNo != null && (mEdtParentMobNo.getText().length() == 0) ||
+                        (mEdtParentMobNo.getText().toString().equalsIgnoreCase(" "))) {
+                    Toast.makeText(getApplicationContext(), "Please Entet the mobile No!!", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (mEdtParentMobNo != null && mEdtParentMobNo.getText().length() < 10) {
+                    Toast.makeText(getApplicationContext(), "Please Entet Valid Mobile No!!", Toast.LENGTH_SHORT).show();
+                    return;
                 } else {
                     DatabaseHandler mDatabaseHandler = new DatabaseHandler(this);
-                    StudentRegisterDetails mStudentRegisterDetails = new StudentRegisterDetails(mEdtName.getText().toString(), mEdtDept.getText().toString(), mEdtYrs.getText().toString());
-                    mDatabaseHandler.inserStudent(mStudentRegisterDetails);
-                    Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
-                    mEdtName.getText().clear();
-                    mEdtDept.setText("");
-                    mEdtYrs.setText("");
+                    String sName = mDatabaseHandler.checkStudentExist(mEdtName.getText().toString(),
+                            mEdtDept.getText().toString(), mEdtYrs.getText().toString());
+
+                    if (sName.equalsIgnoreCase(mEdtName.getText().toString())) {
+                        Toast.makeText(getApplicationContext(), "This Student Name Is Already Registered!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        StudentRegisterDetails mStudentRegisterDetails =
+                                new StudentRegisterDetails(mEdtName.getText().toString(),
+                                        mEdtDept.getText().toString(), mEdtYrs.getText().toString(), mEdtParentMobNo.getText().toString());
+                        mDatabaseHandler.inserStudent(mStudentRegisterDetails);
+                        Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
+                        mEdtName.getText().clear();
+                        mEdtDept.setText("");
+                        mEdtYrs.setText("");
+                        mEdtParentMobNo.getText().clear();
+                    }
                 }
 
                 break;
